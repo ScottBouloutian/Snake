@@ -7,23 +7,36 @@
 //
 
 #import "SnakeMyScene.h"
+#import "GameCell.h"
 
-@implementation SnakeMyScene
+@interface SnakeMyScene()
+-(void)updateBoard;
+@end
+
+@implementation SnakeMyScene{
+    SnakeEngine *engine;
+    SKNode *gameBoard;
+}
 
 -(id)initWithSize:(CGSize)size {    
     if (self = [super initWithSize:size]) {
         /* Setup your scene here */
         
-        self.backgroundColor = [SKColor colorWithRed:0.15 green:0.15 blue:0.3 alpha:1.0];
+        //Create the snake engine
+        engine=[[SnakeEngine alloc]init];
         
-        SKLabelNode *myLabel = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
-        
-        myLabel.text = @"Hello, World!";
-        myLabel.fontSize = 30;
-        myLabel.position = CGPointMake(CGRectGetMidX(self.frame),
-                                       CGRectGetMidY(self.frame));
-        
-        [self addChild:myLabel];
+        //Make the background white
+        self.backgroundColor = [UIColor whiteColor];
+
+        //Setup the game board
+        gameBoard=[[SKNode alloc]init];
+        for(int row=0;row<BOARD_SIZE;row++){
+            for(int col=0;col<BOARD_SIZE;col++){
+                [gameBoard addChild:[engine createCellAtRow:row column:col]];
+            }
+        }
+        [self addChild:gameBoard];
+        [self updateBoard];
     }
     return self;
 }
@@ -31,23 +44,21 @@
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     /* Called when a touch begins */
     
-    for (UITouch *touch in touches) {
-        CGPoint location = [touch locationInNode:self];
-        
-        SKSpriteNode *sprite = [SKSpriteNode spriteNodeWithImageNamed:@"Spaceship"];
-        
-        sprite.position = location;
-        
-        SKAction *action = [SKAction rotateByAngle:M_PI duration:1];
-        
-        [sprite runAction:[SKAction repeatActionForever:action]];
-        
-        [self addChild:sprite];
-    }
+
 }
 
 -(void)update:(CFTimeInterval)currentTime {
     /* Called before each frame is rendered */
 }
 
+-(void)updateBoard{
+    for(GameCell *cell in gameBoard.children){
+        [engine updateCell:cell];
+    }
+}
+
+-(void)moveSnake:(int)direction{
+    [engine moveSnake:direction];
+    [self updateBoard];
+}
 @end

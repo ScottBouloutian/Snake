@@ -10,5 +10,9 @@
 #import <SpriteKit/SpriteKit.h>
 
 @interface SnakeViewController : UIViewController
+- (IBAction)upTouched;
+- (IBAction)downTouched;
+- (IBAction)leftTouched;
+- (IBAction)rightTouched;
 
 @end

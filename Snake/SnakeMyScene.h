@@ -7,7 +7,8 @@
 //
 
 #import <SpriteKit/SpriteKit.h>
+#import "SnakeEngine.h"
 
 @interface SnakeMyScene : SKScene
-
+-(void)moveSnake:(int)direction;
 @end

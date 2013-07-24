@@ -9,7 +9,9 @@
 #import "SnakeViewController.h"
 #import "SnakeMyScene.h"
 
-@implementation SnakeViewController
+@implementation SnakeViewController{
+    SnakeMyScene *scene;
+}
 
 - (void)viewDidLoad
 {
@@ -21,7 +23,7 @@
     skView.showsNodeCount = YES;
     
     // Create and configure the scene.
-    SKScene * scene = [SnakeMyScene sceneWithSize:skView.bounds.size];
+    scene = [SnakeMyScene sceneWithSize:skView.bounds.size];
     scene.scaleMode = SKSceneScaleModeAspectFill;
     
     // Present the scene.
@@ -48,4 +50,19 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
+- (IBAction)upTouched {
+    [scene moveSnake:UP];
+}
+
+- (IBAction)downTouched {
+    [scene moveSnake:DOWN];
+}
+
+- (IBAction)leftTouched {
+    [scene moveSnake:LEFT];
+}
+
+- (IBAction)rightTouched {
+    [scene moveSnake:RIGHT];
+}
 @end

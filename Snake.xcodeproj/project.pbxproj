@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		23BE085A17A024F800218AE9 /* SnakeSegment.m in Sources */ = {isa = PBXBuildFile; fileRef = 23BE085917A024F800218AE9 /* SnakeSegment.m */; };
 		23DF704B179F3A31008DC64F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23DF704A179F3A31008DC64F /* Foundation.framework */; };
 		23DF704D179F3A31008DC64F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23DF704C179F3A31008DC64F /* CoreGraphics.framework */; };
 		23DF704F179F3A31008DC64F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23DF704E179F3A31008DC64F /* UIKit.framework */; };
@@ -17,13 +18,14 @@
 		23DF7060179F3A31008DC64F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 23DF705E179F3A31008DC64F /* Main.storyboard */; };
 		23DF7063179F3A31008DC64F /* SnakeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23DF7062179F3A31008DC64F /* SnakeViewController.m */; };
 		23DF7066179F3A31008DC64F /* SnakeMyScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 23DF7065179F3A31008DC64F /* SnakeMyScene.m */; };
-		23DF7068179F3A31008DC64F /* Spaceship.png in Resources */ = {isa = PBXBuildFile; fileRef = 23DF7067179F3A31008DC64F /* Spaceship.png */; };
 		23DF706A179F3A31008DC64F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 23DF7069179F3A31008DC64F /* Images.xcassets */; };
 		23DF7071179F3A31008DC64F /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23DF7070179F3A31008DC64F /* XCTest.framework */; };
 		23DF7072179F3A31008DC64F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23DF704A179F3A31008DC64F /* Foundation.framework */; };
 		23DF7073179F3A31008DC64F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23DF704E179F3A31008DC64F /* UIKit.framework */; };
 		23DF707B179F3A31008DC64F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 23DF7079179F3A31008DC64F /* InfoPlist.strings */; };
 		23DF707D179F3A31008DC64F /* SnakeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 23DF707C179F3A31008DC64F /* SnakeTests.m */; };
+		23DF708B179F6D42008DC64F /* SnakeEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 23DF708A179F6D42008DC64F /* SnakeEngine.m */; };
+		23DF708E179F77F7008DC64F /* GameCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 23DF708D179F77F7008DC64F /* GameCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +39,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		23BE085817A024F800218AE9 /* SnakeSegment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SnakeSegment.h; sourceTree = "<group>"; };
+		23BE085917A024F800218AE9 /* SnakeSegment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SnakeSegment.m; sourceTree = "<group>"; };
 		23DF7047179F3A31008DC64F /* Snake.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Snake.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		23DF704A179F3A31008DC64F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		23DF704C179F3A31008DC64F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -53,13 +57,16 @@
 		23DF7062179F3A31008DC64F /* SnakeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SnakeViewController.m; sourceTree = "<group>"; };
 		23DF7064179F3A31008DC64F /* SnakeMyScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SnakeMyScene.h; sourceTree = "<group>"; };
 		23DF7065179F3A31008DC64F /* SnakeMyScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SnakeMyScene.m; sourceTree = "<group>"; };
-		23DF7067179F3A31008DC64F /* Spaceship.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Spaceship.png; sourceTree = "<group>"; };
 		23DF7069179F3A31008DC64F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		23DF706F179F3A31008DC64F /* SnakeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SnakeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		23DF7070179F3A31008DC64F /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		23DF7078179F3A31008DC64F /* SnakeTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SnakeTests-Info.plist"; sourceTree = "<group>"; };
 		23DF707A179F3A31008DC64F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		23DF707C179F3A31008DC64F /* SnakeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SnakeTests.m; sourceTree = "<group>"; };
+		23DF7089179F6D42008DC64F /* SnakeEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SnakeEngine.h; sourceTree = "<group>"; };
+		23DF708A179F6D42008DC64F /* SnakeEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SnakeEngine.m; sourceTree = "<group>"; };
+		23DF708C179F77F7008DC64F /* GameCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameCell.h; sourceTree = "<group>"; };
+		23DF708D179F77F7008DC64F /* GameCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,14 +128,12 @@
 		23DF7052179F3A31008DC64F /* Snake */ = {
 			isa = PBXGroup;
 			children = (
+				23DF7086179F6D05008DC64F /* Model */,
+				23DF7087179F6D0B008DC64F /* View */,
+				23DF7088179F6D11008DC64F /* Controller */,
 				23DF705B179F3A31008DC64F /* SnakeAppDelegate.h */,
 				23DF705C179F3A31008DC64F /* SnakeAppDelegate.m */,
 				23DF705E179F3A31008DC64F /* Main.storyboard */,
-				23DF7061179F3A31008DC64F /* SnakeViewController.h */,
-				23DF7062179F3A31008DC64F /* SnakeViewController.m */,
-				23DF7064179F3A31008DC64F /* SnakeMyScene.h */,
-				23DF7065179F3A31008DC64F /* SnakeMyScene.m */,
-				23DF7067179F3A31008DC64F /* Spaceship.png */,
 				23DF7069179F3A31008DC64F /* Images.xcassets */,
 				23DF7053179F3A31008DC64F /* Supporting Files */,
 			);
@@ -162,6 +167,37 @@
 				23DF7079179F3A31008DC64F /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		23DF7086179F6D05008DC64F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				23DF7089179F6D42008DC64F /* SnakeEngine.h */,
+				23DF708A179F6D42008DC64F /* SnakeEngine.m */,
+				23BE085817A024F800218AE9 /* SnakeSegment.h */,
+				23BE085917A024F800218AE9 /* SnakeSegment.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		23DF7087179F6D0B008DC64F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				23DF708C179F77F7008DC64F /* GameCell.h */,
+				23DF708D179F77F7008DC64F /* GameCell.m */,
+				23DF7064179F3A31008DC64F /* SnakeMyScene.h */,
+				23DF7065179F3A31008DC64F /* SnakeMyScene.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		23DF7088179F6D11008DC64F /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				23DF7061179F3A31008DC64F /* SnakeViewController.h */,
+				23DF7062179F3A31008DC64F /* SnakeViewController.m */,
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -243,7 +279,6 @@
 			files = (
 				23DF7057179F3A31008DC64F /* InfoPlist.strings in Resources */,
 				23DF706A179F3A31008DC64F /* Images.xcassets in Resources */,
-				23DF7068179F3A31008DC64F /* Spaceship.png in Resources */,
 				23DF7060179F3A31008DC64F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -266,7 +301,10 @@
 				23DF7059179F3A31008DC64F /* main.m in Sources */,
 				23DF7063179F3A31008DC64F /* SnakeViewController.m in Sources */,
 				23DF705D179F3A31008DC64F /* SnakeAppDelegate.m in Sources */,
+				23BE085A17A024F800218AE9 /* SnakeSegment.m in Sources */,
+				23DF708E179F77F7008DC64F /* GameCell.m in Sources */,
 				23DF7066179F3A31008DC64F /* SnakeMyScene.m in Sources */,
+				23DF708B179F6D42008DC64F /* SnakeEngine.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -471,6 +509,7 @@
 				23DF7082179F3A31008DC64F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		23DF7083179F3A31008DC64F /* Build configuration list for PBXNativeTarget "SnakeTests" */ = {
 			isa = XCConfigurationList;
@@ -479,6 +518,7 @@
 				23DF7085179F3A31008DC64F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
