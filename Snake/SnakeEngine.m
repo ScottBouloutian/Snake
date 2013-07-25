@@ -50,7 +50,6 @@
     
     //Add food to a random empty location
     [self addFood];
-    numEmpty--;
     
 }
 
@@ -73,6 +72,7 @@
             if(board[row][col]==EMPTY){
                 if(random==i){
                     board[row][col]=FOOD;
+                    numEmpty--;
                     return;
                 }
                 i++;
@@ -82,6 +82,7 @@
 }
 
 -(bool)moveSnake:(int)direction{
+    //Get position of new head
     SnakeSegment *newHead=[self canMoveInDirection:direction];
     
     //Check to snake can move in the direction
@@ -89,15 +90,27 @@
         return NO;
     }
     
-    //Move the snake body
-    if(snakeBody.count!=0){
-        SnakeSegment *tail=snakeBody.firstObject;
-        [snakeBody removeObjectAtIndex:0];
-        board[tail.row][tail.col]=EMPTY;
+    //If the snake is eating food
+    if(board[newHead.row][newHead.col]==FOOD){
+        
+        //Grow the snake
         [snakeBody addObject:[SnakeSegment segmentWithSegment:snakeHead]];
         board[snakeHead.row][snakeHead.col]=SNAKE_BODY;
+        [self addFood];
+        
     }else{
-        board[snakeHead.row][snakeHead.col]=EMPTY;
+
+        //Move the snake body
+        if(snakeBody.count!=0){
+            SnakeSegment *tail=snakeBody.firstObject;
+            [snakeBody removeObjectAtIndex:0];
+            board[tail.row][tail.col]=EMPTY;
+            [snakeBody addObject:[SnakeSegment segmentWithSegment:snakeHead]];
+            board[snakeHead.row][snakeHead.col]=SNAKE_BODY;
+        }else{
+            board[snakeHead.row][snakeHead.col]=EMPTY;
+        }
+
     }
     
     //Move the snake head
@@ -113,32 +126,41 @@
         case UP:
             if(snakeHead.row+1<BOARD_SIZE){
                 newHead.row++;
+            }else{
+                return nil;
             }
             break;
         case DOWN:
             if(snakeHead.row-1>=0){
                 newHead.row--;
+            }else{
+                return nil;
             }
             break;
         case LEFT:
             if(snakeHead.col-1>=0){
                 newHead.col--;
+            }else{
+                return nil;
             }
             break;
         case RIGHT:
             if(snakeHead.col+1<BOARD_SIZE){
                 newHead.col++;
+            }else{
+                return nil;
             }
             break;
         default:
+            return nil;
             break;
     }
     
-    if(board[newHead.row][newHead.col]==EMPTY){
-        return newHead;
+    if(board[newHead.row][newHead.col]==SNAKE_BODY){
+        return nil;
     }
     
-    return nil;
+    return newHead;
 }
 
 @end
