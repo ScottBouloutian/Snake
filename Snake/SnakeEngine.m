@@ -13,12 +13,15 @@
 
 @interface SnakeEngine()
 -(void)addFood;
+-(SnakeSegment*)canMoveInDirection:(int)direction;
 @end
 
 @implementation SnakeEngine{
     int board[BOARD_SIZE][BOARD_SIZE]; //Array describing the current game state
     int numEmpty; //Value indicating the number of empty cells in the board
-    NSArray *snake; //Stores an array of snake segments
+    NSMutableArray *snakeBody; //Stores an array of snake segments that make up the snake body
+                                //The first segment in the array is the tail of the snake
+    SnakeSegment *snakeHead; //Stores the snake segment that makes up the snake head
 }
 
 -(id)init{
@@ -39,8 +42,11 @@
 
     //Add snake head
     board[0][0]=SNAKE_HEAD;
-    snake=[[NSArray alloc]initWithObjects:[SnakeSegment segmentWithRow:0 column:0], nil];
+    snakeHead=[SnakeSegment segmentWithRow:0 column:0];
     numEmpty--;
+    
+    //Add snake body
+    snakeBody=[[NSMutableArray alloc]init];
     
     //Add food to a random empty location
     [self addFood];
@@ -73,43 +79,66 @@
             }
         }
     }
-    NSLog(@"There are %i cells.",NUM_CELLS);
 }
 
 -(bool)moveSnake:(int)direction{
-    bool result=NO;
-    SnakeSegment *head=snake.firstObject;
-    board[head.row][head.col]=EMPTY;
+    SnakeSegment *newHead=[self canMoveInDirection:direction];
+    
+    //Check to snake can move in the direction
+    if(!newHead){
+        return NO;
+    }
+    
+    //Move the snake body
+    if(snakeBody.count!=0){
+        SnakeSegment *tail=snakeBody.firstObject;
+        [snakeBody removeObjectAtIndex:0];
+        board[tail.row][tail.col]=EMPTY;
+        [snakeBody addObject:[SnakeSegment segmentWithSegment:snakeHead]];
+        board[snakeHead.row][snakeHead.col]=SNAKE_BODY;
+    }else{
+        board[snakeHead.row][snakeHead.col]=EMPTY;
+    }
+    
+    //Move the snake head
+    snakeHead=newHead;
+    board[snakeHead.row][snakeHead.col]=SNAKE_HEAD;
+    
+    return YES;
+}
+
+-(SnakeSegment*)canMoveInDirection:(int)direction{
+    SnakeSegment *newHead=[SnakeSegment segmentWithSegment:snakeHead];
     switch (direction) {
         case UP:
-            if(head.row+1<BOARD_SIZE){
-                head.row=head.row+1;
-                result=YES;
+            if(snakeHead.row+1<BOARD_SIZE){
+                newHead.row++;
             }
             break;
         case DOWN:
-            if(head.row-1>=0){
-                head.row=head.row-1;
-                result=YES;
+            if(snakeHead.row-1>=0){
+                newHead.row--;
             }
             break;
         case LEFT:
-            if(head.col-1>=0){
-                head.col=head.col-1;
-                result=YES;
+            if(snakeHead.col-1>=0){
+                newHead.col--;
             }
             break;
         case RIGHT:
-            if(head.col+1<BOARD_SIZE){
-                head.col=head.col+1;
-                result=YES;
+            if(snakeHead.col+1<BOARD_SIZE){
+                newHead.col++;
             }
             break;
         default:
             break;
     }
-    board[head.row][head.col]=SNAKE_HEAD;
-    return result;
+    
+    if(board[newHead.row][newHead.col]==EMPTY){
+        return newHead;
+    }
+    
+    return nil;
 }
 
 @end

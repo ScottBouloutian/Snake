@@ -11,5 +11,6 @@
 @interface SnakeSegment : NSObject
 @property int row;
 @property int col;
-+(id)segmentWithRow:(int)row column:(int)col;
++(SnakeSegment*)segmentWithRow:(int)row column:(int)col;
++(SnakeSegment*)segmentWithSegment:(SnakeSegment*)segment;
 @end

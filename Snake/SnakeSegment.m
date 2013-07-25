@@ -11,11 +11,15 @@
 @implementation SnakeSegment
 @synthesize row,col;
 
-+(id)segmentWithRow:(int)row column:(int)col{
++(SnakeSegment*)segmentWithRow:(int)row column:(int)col{
     SnakeSegment *segment=[[SnakeSegment alloc]init];
     segment.row=row;
     segment.col=col;
     return segment;
+}
+
++(SnakeSegment*)segmentWithSegment:(SnakeSegment *)segment{
+    return [SnakeSegment segmentWithRow:segment.row column:segment.col];
 }
 
 @end
