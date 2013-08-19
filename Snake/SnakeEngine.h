@@ -7,18 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "GameCell.h"
-
-#define BOARD_SIZE 11
-
-#define UP 0
-#define DOWN 1
-#define LEFT 2
-#define RIGHT 3
+#import "SnakeState.h"
 
 @interface SnakeEngine : NSObject
 -(void)resetGame;
 -(GameCell*)createCellAtRow:(int)row column:(int)col;
 -(void)updateCell:(GameCell*)cell;
 -(bool)moveSnake:(int)direction;
+-(void)executeAI;
 @end

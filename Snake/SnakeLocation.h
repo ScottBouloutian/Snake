@@ -8,9 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@interface SnakeSegment : NSObject
+@interface SnakeLocation : NSObject
 @property int row;
 @property int col;
-+(SnakeSegment*)segmentWithRow:(int)row column:(int)col;
-+(SnakeSegment*)segmentWithSegment:(SnakeSegment*)segment;
++(SnakeLocation*)locationWithRow:(int)row column:(int)col;
++(SnakeLocation*)locationWithLocation:(SnakeLocation*)location;
 @end
