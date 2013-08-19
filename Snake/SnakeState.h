@@ -26,6 +26,7 @@
 @property NSMutableArray *snakeBody; //Stores an array of snake segments that make up the snake body
 @property SnakeLocation *snakeHead; //Stores the snake segment that makes up the snake head
 @property int numEmpty; //Value indicating the number of empty cells in the board
-@property int foodRow; //Value indicating the row where the food is
-@property int foodCol; //Value indicating the column where the food is
+@property SnakeLocation *foodLocation; //Value indicating the location of the food
+@property SnakeState *parent;
+@property int action;
 @end

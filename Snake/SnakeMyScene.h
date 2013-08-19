@@ -11,4 +11,5 @@
 
 @interface SnakeMyScene : SKScene
 -(void)moveSnake:(int)direction;
+-(void)startAI;
 @end

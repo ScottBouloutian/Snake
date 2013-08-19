@@ -19,7 +19,7 @@
     int board[BOARD_SIZE][BOARD_SIZE]; //Array describing the current game state
 }
 
-@synthesize snakeBody,snakeHead,numEmpty,foodRow,foodCol;
+@synthesize snakeBody,snakeHead,numEmpty,foodLocation,parent,action;
 
 -(id)init{
     if(self=[super init]){
@@ -31,6 +31,8 @@
             }
         }
         numEmpty=NUM_CELLS;
+        parent=nil;
+        action=-1;
         
         //Add snake head
         board[0][0]=SNAKE_HEAD;
@@ -64,6 +66,13 @@
         
         //Set the num empty value
         numEmpty=state.numEmpty;
+        
+        //Set the parent
+        parent=state.parent;
+        action=state.action;
+        
+        //Set the food location
+        foodLocation=state.foodLocation;
     }
     return self;
 }
@@ -76,8 +85,7 @@
             if(board[row][col]==EMPTY){
                 if(random==i){
                     board[row][col]=FOOD;
-                    foodRow=row;
-                    foodCol=col;
+                    foodLocation=[SnakeLocation locationWithRow:row column:col];
                     numEmpty--;
                     return;
                 }
@@ -124,6 +132,10 @@
     //Move the snake head
     result.snakeHead=newHead;
     [result setValue:SNAKE_HEAD forRow:result.snakeHead.row column:result.snakeHead.col];
+    
+    //Set the parent
+    result.parent=self;
+    result.action=direction;
     
     return result;
 }

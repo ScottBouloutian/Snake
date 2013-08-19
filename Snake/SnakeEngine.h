@@ -14,5 +14,5 @@
 -(GameCell*)createCellAtRow:(int)row column:(int)col;
 -(void)updateCell:(GameCell*)cell;
 -(bool)moveSnake:(int)direction;
--(void)executeAI;
+-(NSMutableArray*)executeAI;
 @end

@@ -65,4 +65,8 @@
 - (IBAction)rightTouched {
     [scene moveSnake:RIGHT];
 }
+
+- (IBAction)startAI {
+    [scene startAI];
+}
 @end

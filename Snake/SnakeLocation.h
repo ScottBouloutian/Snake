@@ -1,5 +1,5 @@
 //
-//  SnakeSegment.h
+//  SnakeLocation.h
 //  Snake
 //
 //  Created by Scott Bouloutian on 7/24/13.
@@ -13,4 +13,5 @@
 @property int col;
 +(SnakeLocation*)locationWithRow:(int)row column:(int)col;
 +(SnakeLocation*)locationWithLocation:(SnakeLocation*)location;
+-(bool)equals:(SnakeLocation*)location;
 @end

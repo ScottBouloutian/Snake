@@ -1,5 +1,5 @@
 //
-//  SnakeSegment.m
+//  SnakeLocation.m
 //  Snake
 //
 //  Created by Scott Bouloutian on 7/24/13.
@@ -20,6 +20,10 @@
 
 +(SnakeLocation*)locationWithLocation:(SnakeLocation*)location{
     return [SnakeLocation locationWithRow:location.row column:location.col];
+}
+
+-(bool)equals:(SnakeLocation*)location{
+    return (row == location.row && col == location.col);
 }
 
 @end

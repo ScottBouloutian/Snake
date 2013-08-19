@@ -14,5 +14,6 @@
 - (IBAction)downTouched;
 - (IBAction)leftTouched;
 - (IBAction)rightTouched;
+- (IBAction)startAI;
 
 @end

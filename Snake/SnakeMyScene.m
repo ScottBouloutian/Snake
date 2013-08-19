@@ -61,4 +61,15 @@
     [engine moveSnake:direction];
     [self updateBoard];
 }
+
+-(void)startAI{
+    NSMutableArray *moves=[engine executeAI];
+    if(moves){
+        while(moves.count!=0){
+            NSNumber *move=[moves lastObject];
+            [moves removeLastObject];
+            [self moveSnake:move.intValue];
+        }
+    }
+}
 @end

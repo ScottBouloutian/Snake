@@ -15,13 +15,14 @@
 -(int)search:(SnakeState*)node :(int)g :(int)bound;
 -(int)heuristic:(SnakeState*)state;
 -(BOOL)is_goal:(SnakeState*)state;
--(NSArray*)successors:(SnakeState*)state;
+-(NSMutableArray*)unwindSolution;
 @end
 
 @implementation SnakeEngine{
     SnakeState *gameState;
-    int foodRow;
-    int foodCol;
+    SnakeLocation *goalLocation;
+    int explored;
+    SnakeState *solution;
 }
 
 -(id)init{
@@ -55,21 +56,28 @@
     return NO;
 }
 
--(void)executeAI{
-    
+-(NSMutableArray*)executeAI{
+    if([self ida_star:gameState]){
+        return [self unwindSolution];
+    }
+    return nil;
 }
 
 -(BOOL)ida_star:(SnakeState *)root{
-    foodRow=root.foodRow;
-    foodRow=root.foodCol;
+    goalLocation=root.foodLocation;
+    gameState.parent=nil;
+    explored=0;
     int bound=[self heuristic:root];
     int t;
     while (YES) {
+        NSLog(@"Next Iteration - Bound: %i",bound);
         t=[self search:root :0 :bound];
-        if (t== FOUND){
+        if (t == FOUND){
+            NSLog(@"Solution Found");
             return YES;
         }
-        if(t==INFINITY){
+        if(t >= 999){
+            NSLog(@"Solution Not Found");
             return NO;
         }
         bound=t;
@@ -82,38 +90,47 @@
         return f;
     }
     if ([self is_goal:node]){
+        solution=node;
+        NSLog(@"Solution was Set");
         return FOUND;
     }
-    int min=INFINITY;
-    for(SnakeState *succ in [self successors:node]){
-        int t=[self search:succ :g+1 :bound];
-        if(t==FOUND){
-            return FOUND;
-        }
-        if(t<min){
-            min=t;
+    int min = 999;
+    SnakeState *child;
+    for(int d=0;d<4;d++){
+        child=[node stateByMovingSnakeInDirection:d];
+        if(child){
+            explored++;
+            int t=[self search:child :g+1 :bound];
+            if(t==FOUND){
+                return FOUND;
+            }
+            if(t<min){
+                min=t;
+            }
         }
     }
     return min;
 }
 
+-(NSMutableArray*)unwindSolution{
+    NSMutableArray *result=[[NSMutableArray alloc]init];
+    
+    //Add the actions to the result array
+    while(solution.parent!=nil){
+        [result addObject:[NSNumber numberWithInt:solution.action]];
+        solution=solution.parent;
+    }
+    solution=nil;
+
+    return result;;
+}
+
 -(int)heuristic:(SnakeState *)state{
-    return 0;
+    return abs(state.snakeHead.row-goalLocation.row)+abs(state.snakeHead.col-goalLocation.col);
 }
 
 -(BOOL)is_goal:(SnakeState *)state{
-    return NO;
-}
-
--(NSArray*)successors:(SnakeState *)state{
-    NSMutableArray *result;
-    for(int i=0;i<4;i++){
-        SnakeState *newState=[state stateByMovingSnakeInDirection:i];
-        if(newState){
-            [result addObject:newState];
-        }
-    }
-    return [NSArray arrayWithArray:result];
+    return [state.snakeHead equals:goalLocation];
 }
 
 @end
